@@ -1,0 +1,12 @@
+{
+  "name": "Assignment-1-CSV-JSON",
+  "version": "1.0.0",
+  "description": "",
+  "main": "file-converter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
