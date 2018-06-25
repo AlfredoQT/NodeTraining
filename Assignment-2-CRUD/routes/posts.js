@@ -3,10 +3,11 @@ let store = require( '../lib/store.js' );
 const express = require( 'express' );
 const router = express.Router();
 
-const idBoundsChecker = ( req, res ) => {
+const idBoundsChecker = ( req, res, next ) => {
     if ( req.params.id < 0 || req.params.id >= store.posts.length ) {
         return res.status( 400 ).send( { error: "Id is out of bounds" } );
     }
+    next();
 };
 
 router.get( '/', ( req, res ) => {
