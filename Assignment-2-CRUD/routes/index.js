@@ -1,9 +1,7 @@
 let postsRoute = require( './posts' );
-let commentsRoute = require( './comments' );
 
 let routes = {
-    posts : postsRoute,
-    comments: commentsRoute
+    posts : postsRoute
 };
 
 module.exports = routes;

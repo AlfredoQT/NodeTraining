@@ -2,6 +2,7 @@ let store = require( '../lib/store.js' );
 
 const express = require( 'express' );
 const router = express.Router();
+let commentsRoute = require( './comments' );
 
 const idBoundsChecker = ( req, res, next ) => {
     if ( req.params.id < 0 || req.params.id >= store.posts.length ) {
@@ -13,6 +14,11 @@ const idBoundsChecker = ( req, res, next ) => {
 router.get( '/', ( req, res ) => {
     // Just return all posts
     res.status( 200 ).send( store.posts );
+});
+
+// By id
+router.get( '/:id', idBoundsChecker,( req, res ) => {
+    res.status( 200 ).send( store.posts[req.params.id] );
 });
 
 router.post( '/', ( req, res ) => {
@@ -60,5 +66,12 @@ router.delete( '/:id', idBoundsChecker, ( req, res ) => {
     store.posts.splice( req.params.id, 1 );
     res.status( 204 ).send();
 });
+
+// For the comments
+router.use( '/:id/comments', idBoundsChecker, ( req, res, next ) =>{
+    // Pass the post to the request so that 
+    req.accessedPostID = req.params.id;
+    next();
+}, commentsRoute );
 
 module.exports = router;
