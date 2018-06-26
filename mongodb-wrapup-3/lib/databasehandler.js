@@ -16,6 +16,7 @@ class DatabaseHandler {
             // Maybe separate collection names into another class?
             client.db( this.databaseName ).collection( 'items' ).find( {}, { sort: { _id: -1} } ).toArray( ( err, items ) => {
                 if ( err ) {
+                    client.close();
                     return callback( err, null );
                 }
                 
@@ -24,6 +25,23 @@ class DatabaseHandler {
                 client.close();
             });
             
+        });
+    }
+
+    insertItem( item, callback ) {
+        MongoClient.connect( this.url, ( err, client ) => {
+            if ( err ) {
+                return callback( err, null );
+            }
+
+            client.db( this.databaseName ).collection( 'items' ).insertOne( item, ( err, result ) => {
+                if ( err ) {
+                    client.close();
+                    return callback( err, null );
+                }
+                callback( null, result );
+                client.close();
+            });
         });
     }
 
