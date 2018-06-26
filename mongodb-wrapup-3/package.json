@@ -1,0 +1,21 @@
+{
+  "name": "mongodb-wrapup-3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./node_modules/node-dev/bin/node-dev ./bin/www"
+  },
+  "author": "Alfredo Quintero Tlacuilo",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "1.18.3",
+    "express": "4.16.3",
+    "mongodb": "3.0.10",
+    "morgan": "1.9.0"
+  },
+  "devDependencies": {
+    "node-dev": "3.1.3"
+  }
+}
