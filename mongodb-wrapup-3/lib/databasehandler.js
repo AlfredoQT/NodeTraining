@@ -1,26 +1,27 @@
-const MongoClient = require( 'mongodb' ).MongoClient;
+const mongodb= require('mongodb')
+const MongoClient = mongodb.MongoClient;
 
 class DatabaseHandler {
 
     constructor() {
-        this.url = 'mongodb+srv://admin:<PASSWORD>@clustertest-wgpdz.mongodb.net/test?retryWrites=true';
+        this.url = 'mongodb+srv://admin:admin@clustertest-wgpdz.mongodb.net/test?retryWrites=true';
         this.databaseName = 'whishlist';
     }
 
     fetchItems( callback ) {
-        MongoClient.connect( this.url, ( err, db ) => {
+        MongoClient.connect( this.url, ( err, client ) => {
             if ( err ) {
                 return callback( err, null );
             }
             // Maybe separate collection names into another class?
-            db.collection( 'items' ).find( {}, { sort: { _id: -1} } ).toArray( ( err, items ) => {
+            client.db( this.databaseName ).collection( 'items' ).find( {}, { sort: { _id: -1} } ).toArray( ( err, items ) => {
                 if ( err ) {
                     return callback( err, null );
                 }
                 
                 callback( null, items );
 
-                db.close();
+                client.close();
             });
             
         });
