@@ -1,4 +1,4 @@
-const mongodb= require('mongodb')
+const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 
 class DatabaseHandler {
@@ -39,6 +39,7 @@ class DatabaseHandler {
                     client.close();
                     return callback( err, null );
                 }
+                // Does not matter for this exercise, but result.ops[0] contains the actual info of the inserted object, including its id
                 callback( null, result );
                 client.close();
             });
