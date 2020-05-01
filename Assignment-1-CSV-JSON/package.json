@@ -4,12 +4,16 @@
   "description": "",
   "main": "file-converter.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "csvtojson": "2.0.4"
-  }
+    "csvtojson": "2.0.4",
+    "snyk": "^1.316.1"
+  },
+  "snyk": true
 }
